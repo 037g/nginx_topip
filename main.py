@@ -75,29 +75,17 @@ def calculate() -> None:
 """ RegEx Match Patterns."""
 ipv4 = "(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}"
 ipv6 = "(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))"
-""" Precompile for more efficient resue."""
+""" Precompile for more efficient reuse."""
 load_ipv4 = re.compile(ipv4)
 load_ipv6 = re.compile(ipv6)
 
 
-
-
-# Different METHOD (assumes file can fit in memory)
-# with open(args.filename, 'r', encoding="UTF-8") as logFile:
-#     logs = logFile.readlines()
-#     print(f"{len(logs)} lines read.")
-#     for line in logs:
-#         features = line.split(" ")
-#         # assumed IP string todo: verify function to check ips
-#         IP = features[0]
-#         checkIPDict(IP)
-
 # Main Function
 if __name__ == "__main__":
 
-    # File Handling (with generator)
+    # File Handling
     rows = ( row.split(" ") for row in open(args.filename, "r", encoding="UTF-8") )
-    # Iterate through the generator
+    
     for row in rows:
         sourceIP = row[0]
         upsertIPDict(sourceIP)
