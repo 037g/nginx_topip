@@ -1,5 +1,5 @@
 # nginx_topip
-A simple nginx log parser that identifies top source ips
+An nginx log parser in python that identifies top source ips.
 
 <pre><code>
 arguments:
@@ -23,6 +23,12 @@ arguments:
 │  5   │  80.91.33.133   │ 1202  │
 └──────┴─────────────────┴───────┘
 </pre>
+
+###### Note: This can be easily accomplished with existing unix command line tools:
+<pre><code>
+cat nginx_logs | awk '{print $1}' | uniq -c | sort -n | tail -n10
+</code></pre>
+
 ---
 ## Sample Data
 - https://github.com/elastic/examples/blob/master/Common%20Data%20Formats/nginx_logs/nginx_logs
